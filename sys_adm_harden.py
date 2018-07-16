@@ -42,13 +42,12 @@ def walk(directory, chattr):
     for entry in li:
         if entry == 'wpa_supplicant.conf':continue
         result.add(entry)
-        for entry in li:
+        for entry in result:
             stuff = flags + entry
             os.system(stuff)
             li.remove(entry)
     return "[!] Complete, moving on.... [!]"
 
-os.system('clear')
 conti = 'y'
 os.system('clear')
 while conti == 'y':
