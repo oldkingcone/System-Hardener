@@ -35,9 +35,13 @@ def walk(directory, chattr):
     result = set()
     flags = ''
     directories = list()
+    reject = set()
     if chattr == "chflags": flags = "chflags schg sappend"
     if chattr == "chattr": flags = "chattr +i"
     for entry in os.listdir(directory):
+        if entry == 'wpa_supplicant.conf':
+            reject.add(entry)
+            continue
         if entry.endswith('.conf'):
             li.append(entry)
     for entry in os.scandir(directory):
@@ -50,7 +54,6 @@ def walk(directory, chattr):
                     if item.endswith('.conf'):
                         li.append(item)
     for entry in li:
-        if entry == 'wpa_supplicant.conf':continue
         result.add(entry)
         for entry in result:
             stuff = flags + entry
