@@ -19,8 +19,18 @@ except ImportError as e:
     print("One or more of the required packages did not import\n please run pip install -r requirements.txt "
           "before moving on.")
     sys.exit(1)
+#############################################################################################################################    
+#@todo, because I LOVE encryption, Need to impliment a way to encrypt this DB, because, science.
+conn = sql3.connect('immutable.sqlite')
+c = conn.cursor()
+c.execute("""CREATE TABLE IF NOT EXISTS SystemHardener(FileID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+            DateTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, Directory TEXT, FileName TEXT)""")
+###############################################################################################################################
+
+###############################################################################################################################
 def walk(directory, chattr):
     #@todo, make this recursive and check all directories.
+    #@todo, need to refine the logic here, it works, but still kind of buggy.
     li = list()
     result = set()
     flags = ''
@@ -47,9 +57,9 @@ def walk(directory, chattr):
             os.system(stuff)
             li.remove(entry)
     return "[!] Complete, moving on.... [!]"
+##############################################################################################################################
 
 conti = 'y'
-os.system('clear')
 while conti == 'y':
     try:
         # detmine which flavor the user is using.
