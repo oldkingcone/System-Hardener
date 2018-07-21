@@ -96,7 +96,7 @@ while conti == 'y':
             # @todo figure out why the eff this is happening, makes 0 sense. trying writelines instead of write.
             try:
                 rc = open('/etc/rc.conf', 'a')
-                rc.writelines(stuff)
+                rc.writelines(''.join(stuff))
                 rc.close()
             except:
                 pass
