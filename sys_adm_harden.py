@@ -21,10 +21,11 @@ except ImportError as e:
     sys.exit(1)
 #############################################################################################################################    
 #@todo, because I LOVE encryption, Need to impliment a way to encrypt this DB, because, science.
+#I do not like to assume much, however, the os.path module will list the full path.
 conn = sql3.connect('immutable.sqlite')
 c = conn.cursor()
 c.execute("""CREATE TABLE IF NOT EXISTS SystemHardener(FileID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-            DateTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, Directory TEXT, FileName TEXT)""")
+            DateTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, FileName TEXT)""")
 ###############################################################################################################################
 
 ###############################################################################################################################
